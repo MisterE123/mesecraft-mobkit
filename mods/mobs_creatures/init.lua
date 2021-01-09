@@ -3,7 +3,7 @@
 local path = minetest.get_modpath("mobs_creatures")
 
 --staging area for new mobs that are incomplete
-dofile(path .. "/mobs/facehugger.lua")
+--dofile(path .. "/mobs/facehugger.lua")
 
 
 --Simplified Monsters
@@ -19,12 +19,12 @@ dofile(path .. "/mobs/stone_man.lua")
 dofile(path .. "/mobs/skeleton_archer.lua")
 dofile(path .. "/mobs/skeleton_fighter.lua")
 dofile(path .. "/mobs/tree_monster.lua")
-dofile(path .. "/mobs/zombie.lua")
+--dofile(path .. "/mobs/zombie.lua")
 
 -- Animals (surface and subterrane)
 dofile(path .. "/mobs/bat.lua")
-dofile(path .. "/mobs/cow.lua")
-dofile(path .. "/mobs/deer.lua") -- Needs SFX.
+--dofile(path .. "/mobs/cow.lua")
+--dofile(path .. "/mobs/deer.lua") -- Needs SFX.
 dofile(path .. "/mobs/kangaroo.lua")
 dofile(path .. "/mobs/ocelot.lua")
 dofile(path .. "/mobs/mooshroom.lua")
@@ -34,21 +34,21 @@ dofile(path .. "/mobs/penguin.lua") -- Needs SFX, and Follow items.
 dofile(path .. "/mobs/polar_bear.lua")
 dofile(path .. "/mobs/rabbit.lua")
 dofile(path .. "/mobs/rat.lua")
-dofile(path .. "/mobs/sheep.lua") -- Needs SFX.
+--dofile(path .. "/mobs/sheep.lua") -- Needs SFX.
 dofile(path .. "/mobs/spider.lua")
-dofile(path .. "/mobs/wolf.lua")
+--dofile(path .. "/mobs/wolf.lua")
 
 -- Farm Animals
-dofile(path .. "/mobs/pig.lua")
-dofile(path .. "/mobs/chicken.lua")
+--dofile(path .. "/mobs/pig.lua")
+--dofile(path .. "/mobs/chicken.lua")
 
 -- Sea Animals (aquatic)
 dofile(path .. "/mobs/clownfish.lua")
 dofile(path .. "/mobs/cod.lua")
-dofile(path .. "/mobs/crocodile.lua")
+--dofile(path .. "/mobs/crocodile.lua")
 dofile(path .. "/mobs/dolphin.lua")
 dofile(path .. "/mobs/salmon.lua")
-dofile(path .. "/mobs/shark.lua")
+--dofile(path .. "/mobs/shark.lua")
 dofile(path .. "/mobs/snapper.lua")
 dofile(path .. "/mobs/turtle.lua")
 
