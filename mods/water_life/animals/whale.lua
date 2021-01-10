@@ -182,6 +182,7 @@ minetest.register_entity("water_life:whale",{
 			
 			if time_from_last_punch > 2 then
 				mobkit.hurt(self,tool_capabilities.damage_groups.fleshy or 1)
+				water_life.flash_red(self)
 			else
 				if puncher:is_player() then
 					minetest.chat_send_player(puncher:get_player_name(),">>> You missed <<<")

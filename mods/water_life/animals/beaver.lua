@@ -118,16 +118,26 @@ end
 
 
 
+local function flash_red(self)
+	minetest.after(0.0, function()
+		self.object:settexturemod("^[colorize:#FF000040")
+		core.after(0.2, function()
+			if mobkit.is_alive(self) then
+				self.object:settexturemod("")
+			end
+		end)
+	end)
+end
 minetest.register_entity("water_life:beaver",{
 											-- common props
 	physical = true,
 	stepheight = 0.1,				--EVIL!
 	collide_with_objects = true,
-	collisionbox = {-0.2, 0, -0.2, 0.2, 0.2, 0.2},
+	collisionbox = {-0.4, 0, -0.4, 0.4, 0.4, 0.4},
 	visual = "mesh",
 	mesh = "water_life_beaver.b3d",
 	textures = {"water_life_beaver.png"},
-	visual_size = {x = 0.2, y = 0.2},
+	visual_size = {x = 0.4, y = 0.4},
 	static_save = false,
 	makes_footstep_sound = true,
 	on_step = mobkit.stepfunc,	-- required
@@ -164,6 +174,7 @@ minetest.register_entity("water_life:beaver",{
                                               
 		if mobkit.is_alive(self) then
 			mobkit.hurt(self,tool_capabilities.damage_groups.fleshy or 1)
+			water_life.flash_red(self)
 		end
 	end,
 })

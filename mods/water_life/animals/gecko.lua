@@ -164,7 +164,7 @@ minetest.register_entity("water_life:gecko",{
 			self.object:set_velocity({x=hvel.x,y=2,z=hvel.z})
 			
 			mobkit.hurt(self,tool_capabilities.damage_groups.fleshy or 1)
-
+			water_life.flash_red(self)
 			if type(puncher)=='userdata' and puncher:is_player() then	-- if hit by a player
 				mobkit.clear_queue_high(self)							-- abandon whatever they've been doing
 				water_life.hq_water_attack(self,puncher,20,6,true)

@@ -187,6 +187,20 @@ end
 
 
 
+local function flash_red(self)
+	minetest.after(0.0, function()
+		self.object:settexturemod("^[colorize:#FF000040")
+		core.after(0.2, function()
+			if mobkit.is_alive(self) then
+				self.object:settexturemod("")
+			end
+		end)
+	end)
+end
+
+
+
+
 minetest.register_entity("water_life:alligator",{
 											-- common props
 	physical = true,
@@ -249,7 +263,7 @@ minetest.register_entity("water_life:alligator",{
 			self.object:set_velocity({x=hvel.x,y=2,z=hvel.z})
 			
 			mobkit.hurt(self,tool_capabilities.damage_groups.fleshy or 1)
-
+			water_life.flash_red(self)
 			if type(puncher)=='userdata' and puncher:is_player() then	-- if hit by a player
 				mobkit.clear_queue_high(self)							-- abandon whatever they've been doing
 				water_life.hq_water_attack(self,puncher,20,6,true)

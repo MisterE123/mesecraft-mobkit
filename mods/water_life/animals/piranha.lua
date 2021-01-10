@@ -116,7 +116,7 @@ minetest.register_entity("water_life:piranha",{
 		if mobkit.is_alive(self) then
 						
 			mobkit.hurt(self,tool_capabilities.damage_groups.fleshy or 1)
-
+			water_life.flash_red(self)
 		end
 	end,
     on_rightclick = function(self, clicker)

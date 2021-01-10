@@ -124,7 +124,7 @@ minetest.register_entity("water_life:coralfish",{
 		if mobkit.is_alive(self) then
 						
 			mobkit.hurt(self,tool_capabilities.damage_groups.fleshy or 1)
-
+			water_life.flash_red(self)
 		end
 	end,
     on_rightclick = function(self, clicker)
@@ -188,7 +188,7 @@ minetest.register_entity("water_life:coralfish_tamed",{
             if not puncher or not puncher:is_player() then return end
             
                 mobkit.hurt(self,tool_capabilities.damage_groups.fleshy or 1)
-
+				water_life.flash_red(self)
 		end
 	end,
                                                 
