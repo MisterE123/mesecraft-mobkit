@@ -6,6 +6,22 @@
 -----------------------------------------------------------
 
 water_life = {}
+
+
+
+
+water_life.flash_red = function(self)
+	minetest.after(0.0, function()
+		self.object:settexturemod("^[colorize:#FF000040")
+		core.after(0.2, function()
+			if mobkit.is_alive(self) then
+				self.object:settexturemod("")
+			end
+		end)
+	end)
+end
+
+
 water_life.version = "271220"
 water_life.shark_food = {}
 water_life.repellant = {}
@@ -163,3 +179,5 @@ if minetest.get_modpath("better_fauna") then
 	water_life.register_shark_food("better_fauna:sheep")
 	water_life.register_shark_food("better_fauna:turkey")
 end
+
+
