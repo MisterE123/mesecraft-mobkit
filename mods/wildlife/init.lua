@@ -180,7 +180,7 @@ minetest.register_globalstep(spawnstep)
 minetest.register_entity("wildlife:wolf",{
 											-- common props
 	physical = true,
-	stepheight = 0.1,				--EVIL!
+	stepheight = 1,				--EVIL!
 	collide_with_objects = true,
 	collisionbox = {-0.3, -0.01, -0.3, 0.3, 0.7, 0.3},
 	visual = "mesh",
@@ -232,7 +232,7 @@ minetest.register_entity("wildlife:wolf",{
 minetest.register_entity("wildlife:deer",{
 											-- common props
 	physical = true,
-	stepheight = 0.1,				--EVIL!
+	stepheight = 1,				--EVIL!
 	collide_with_objects = true,
 	collisionbox = {-0.35, -0.19, -0.35, 0.35, 0.65, 0.35},
 	visual = "mesh",
