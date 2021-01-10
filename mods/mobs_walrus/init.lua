@@ -390,3 +390,6 @@ mob_core.register_spawn({
 }, 16, 1)
 
 
+if minetest.get_modpath("water_life") then
+	water_life.register_shark_food("mobs_walrus:walrus")
+end
