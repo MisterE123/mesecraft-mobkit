@@ -135,7 +135,8 @@ minetest.register_entity("better_fauna:sheep",{
 		"farming:wheat"
 	},
 	drops = {
-		{name = "better_fauna:mutton_raw", chance = 1, min = 1, max = 4}
+		{name = "better_fauna:mutton_raw", chance = 1, min = 1, max = 4},
+		{name = "wool:white", chance = 1, min = 1, max = 1},
 	},
 	consumable_nodes = {
 		{
