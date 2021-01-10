@@ -23,7 +23,7 @@ local function setting(stype, name, default, description)
 	end	
 end
 
-setting("bool", "remove_default_lava", true, "Removes default mapgen lava")
+setting("bool", "remove_default_lava", false, "Removes default mapgen lava")
 setting("bool", "glowing_rock", true, "Cause rock adjacent to lava to convert into glowing form")
 setting("bool", "cook_soil", true, "Cause soil and carbon-containing ores to be cooked into other forms by lava")
 
