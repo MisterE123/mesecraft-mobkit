@@ -132,7 +132,8 @@ minetest.register_entity("mobs_walrus:walrus",{
     scale_stage3 = 0.80,
 	visual = "mesh",
     mesh = "mobs_walrus_walrus.b3d",
-    textures = {"mobs_walrus_walrus1.png","mobs_walrus_walrus2.png",},
+	textures = {"mobs_walrus_walrus1.png","mobs_walrus_walrus2.png",},
+	attention_span = 10,
     animation = {
 		walk={range={x=55,y=95},speed=15,loop=true},
 		run={range={x=55,y=95},speed=20,loop=true},	
@@ -236,8 +237,8 @@ minetest.register_entity("mobs_walrus:walrus",{
     drops = {
 		{name = "water_life:meat_raw", chance = 1, min = 2, max = 5},
     },
-    on_step = better_fauna.on_step,
-    on_activate = better_fauna.on_activate,		
+    on_step = mob_core.on_step,
+    on_activate = mob_core.on_activate,		
     get_staticdata = mobkit.statfunc,
 	logic = walrus_brain,
 	on_rightclick = function(self, clicker)
