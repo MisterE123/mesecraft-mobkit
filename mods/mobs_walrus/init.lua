@@ -132,8 +132,7 @@ minetest.register_entity("mobs_walrus:walrus",{
     scale_stage3 = 0.80,
 	visual = "mesh",
     mesh = "mobs_walrus_walrus.b3d",
-	textures = {"mobs_walrus_walrus1.png","mobs_walrus_walrus2.png",},
-	attention_span = 10,
+    textures = {"mobs_walrus_walrus1.png","mobs_walrus_walrus2.png",},
     animation = {
 		walk={range={x=55,y=95},speed=15,loop=true},
 		run={range={x=55,y=95},speed=20,loop=true},	
@@ -237,8 +236,8 @@ minetest.register_entity("mobs_walrus:walrus",{
     drops = {
 		{name = "water_life:meat_raw", chance = 1, min = 2, max = 5},
     },
-    on_step = mob_core.on_step,
-    on_activate = mob_core.on_activate,		
+    on_step = better_fauna.on_step,
+    on_activate = better_fauna.on_activate,		
     get_staticdata = mobkit.statfunc,
 	logic = walrus_brain,
 	on_rightclick = function(self, clicker)
@@ -354,40 +353,40 @@ mob_core.register_spawn({
 	max_height = 31000,
 	group = 10,
 	optional = {
-		biomes = {
-			"snowy_grassland",
-			"deciduous_forest",
-			"icesheet_ocean",
-			"tundra_highland",
-			"taiga",
-			"tundra",
-			"icesheet",
-			"taiga_beach",
-			"tundra_beach",
-			"tundra_ocean",
-		}
+		--biomes = {
+			--"snowy_grassland",
+			--"deciduous_forest",
+			--"icesheet_ocean",
+			--"tundra_highland",
+			--"taiga",
+			--"tundra",
+			--"icesheet",
+			--"taiga_beach",
+			--"tundra_beach",
+			--"tundra_ocean",
+		--}
 	}
 }, 10, 100)
 
 
 mob_core.register_spawn({
 	name = "mobs_walrus:walrus",
-	nodes = {"default:snow", "default:ice"},
+	nodes = {"default:snow", "default:ice","default:snowblock"},
 	min_light = 0,
 	max_light = 20,
 	min_height = -31000,
 	max_height = 31000,
 	group = 8,
-	optional = {
-		biomes = {
-			"snowy_grassland",
-			"deciduous_forest",
-			"taiga",
-			"tundra",
-			"icesheet",
-			"taiga_beach"
-		}
-	}
+	--optional = {
+		--biomes = {
+			--"snowy_grassland",
+			--"deciduous_forest",
+			--"taiga",
+			--"tundra",
+			--"icesheet",
+			--"taiga_beach"
+		--}
+	--}
 }, 16, 1)
 
 
