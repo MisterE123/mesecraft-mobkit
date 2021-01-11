@@ -1,10 +1,4 @@
 
-
-
-
-
-
-
 -- local walrus_brain = function(self)
 
 -- 	if self.hp <= 0 then	

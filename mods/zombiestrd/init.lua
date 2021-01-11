@@ -172,79 +172,79 @@ end
 -- a modder will want to refer to specific names according to games/mods they're using 
 -- in order for mobs not to spawn on treetops, certain biomes etc.
 
-local function spawnstep(dtime)
+-- local function spawnstep(dtime)
 
-	for _,plyr in ipairs(minetest.get_connected_players()) do
-		if random()<dtime*0.2 then	-- each player gets a spawn chance every 5s on average
-			local vel = plyr:get_player_velocity()
-			local spd = vector.length(vel)
-			local chance = spawn_rate * 1/(spd*0.75+1)  -- chance is quadrupled for speed=4
-			local yaw
-			if spd > 1 then
-				-- spawn in the front arc
-				yaw = minetest.dir_to_yaw(vel) + random()*0.35 - 0.75
-			else
-				-- random yaw
-				yaw = random()*pi*2 - pi
-			end
-			local pos = plyr:get_pos()
-			local dir = vector.multiply(minetest.yaw_to_dir(yaw),abr*16)
-			local pos2 = vector.add(pos,dir)
-			pos2.y=pos2.y-5
-			local height, liquidflag = mobkit.get_terrain_height(pos2,32)
+-- 	for _,plyr in ipairs(minetest.get_connected_players()) do
+-- 		if random()<dtime*0.2 then	-- each player gets a spawn chance every 5s on average
+-- 			local vel = plyr:get_player_velocity()
+-- 			local spd = vector.length(vel)
+-- 			local chance = spawn_rate * 1/(spd*0.75+1)  -- chance is quadrupled for speed=4
+-- 			local yaw
+-- 			if spd > 1 then
+-- 				-- spawn in the front arc
+-- 				yaw = minetest.dir_to_yaw(vel) + random()*0.35 - 0.75
+-- 			else
+-- 				-- random yaw
+-- 				yaw = random()*pi*2 - pi
+-- 			end
+-- 			local pos = plyr:get_pos()
+-- 			local dir = vector.multiply(minetest.yaw_to_dir(yaw),abr*16)
+-- 			local pos2 = vector.add(pos,dir)
+-- 			pos2.y=pos2.y-5
+-- 			local height, liquidflag = mobkit.get_terrain_height(pos2,32)
 	
-			if height and --height >= 0 and
-			mobkit.nodeatpos({x=pos2.x,y=height-0.01,z=pos2.z}).is_ground_content then
+-- 			if height and --height >= 0 and
+-- 			mobkit.nodeatpos({x=pos2.x,y=height-0.01,z=pos2.z}).is_ground_content then
 
-				local objs = minetest.get_objects_inside_radius(pos,abr*16+5)
-				local wcnt=0
-				local dcnt=0
-				local mobname = 'zombiestrd:zombie'
-				if liquidflag then		-- sharks
-					local spnode = mobkit.nodeatpos({x=pos2.x,y=height+0.01,z=pos2.z})
-					local spnode2 = mobkit.nodeatpos({x=pos2.x,y=height+1.01,z=pos2.z}) -- node above to make sure won't spawn in shallows
-					nodename_water = nodename_water or minetest.registered_aliases.mapgen_water_source
-					if spnode and spnode2 and spnode.name == nodename_water and spnode2.name == nodename_water then
-						for _,obj in ipairs(objs) do
-							if not obj:is_player() then
-								local entity = obj:get_luaentity()
-								if entity and entity.name=='zombiestrd:shark' then return end
-							end
-						end
-					mobname = 'zombiestrd:shark'
-					else
-						return
-					end
+-- 				local objs = minetest.get_objects_inside_radius(pos,abr*16+5)
+-- 				local wcnt=0
+-- 				local dcnt=0
+-- 				local mobname = 'zombiestrd:zombie'
+-- 				if liquidflag then		-- sharks
+-- 					local spnode = mobkit.nodeatpos({x=pos2.x,y=height+0.01,z=pos2.z})
+-- 					local spnode2 = mobkit.nodeatpos({x=pos2.x,y=height+1.01,z=pos2.z}) -- node above to make sure won't spawn in shallows
+-- 					nodename_water = nodename_water or minetest.registered_aliases.mapgen_water_source
+-- 					if spnode and spnode2 and spnode.name == nodename_water and spnode2.name == nodename_water then
+-- 						for _,obj in ipairs(objs) do
+-- 							if not obj:is_player() then
+-- 								local entity = obj:get_luaentity()
+-- 								if entity and entity.name=='zombiestrd:shark' then return end
+-- 							end
+-- 						end
+-- 					mobname = 'zombiestrd:shark'
+-- 					else
+-- 						return
+-- 					end
 					
-				elseif height >= 0 then		--zombies
-					for _,obj in ipairs(objs) do				-- count mobs in abrange
-						if not obj:is_player() then
-							local entity = obj:get_luaentity()
-							if entity and entity.name:find('zombiestrd:') then
-								chance=chance + (1-chance)*spawn_reduction	-- chance reduced for every mob in range
-							end
-						end
-					end
-				end
-				if chance < random() then
-					pos2.y = height+1.01
-					objs = minetest.get_objects_inside_radius(pos2,abr*16-2)
-					for _,obj in ipairs(objs) do				-- do not spawn if another player around
-						if obj:is_player() then return end
-					end
-					local obj=minetest.add_entity(pos2,mobname)			-- ok spawn it already damnit
-				end
-			end
-		end
-	end
-end
+-- 				elseif height >= 0 then		--zombies
+-- 					for _,obj in ipairs(objs) do				-- count mobs in abrange
+-- 						if not obj:is_player() then
+-- 							local entity = obj:get_luaentity()
+-- 							if entity and entity.name:find('zombiestrd:') then
+-- 								chance=chance + (1-chance)*spawn_reduction	-- chance reduced for every mob in range
+-- 							end
+-- 						end
+-- 					end
+-- 				end
+-- 				if chance < random() then
+-- 					pos2.y = height+1.01
+-- 					objs = minetest.get_objects_inside_radius(pos2,abr*16-2)
+-- 					for _,obj in ipairs(objs) do				-- do not spawn if another player around
+-- 						if obj:is_player() then return end
+-- 					end
+-- 					local obj=minetest.add_entity(pos2,mobname)			-- ok spawn it already damnit
+-- 				end
+-- 			end
+-- 		end
+-- 	end
+-- end
 
 
-minetest.register_globalstep(spawnstep)
--- minetest.register_globalstep(function(dtime)
-	-- local spos=mobkit.get_spawn_pos_abr(dtime,5,10,0.5,0.4)
-	-- if spos then minetest.add_entity(spos,'zombiestrd:zombie') end
--- end)
+-- minetest.register_globalstep(spawnstep)
+-- -- minetest.register_globalstep(function(dtime)
+-- 	-- local spos=mobkit.get_spawn_pos_abr(dtime,5,10,0.5,0.4)
+-- 	-- if spos then minetest.add_entity(spos,'zombiestrd:zombie') end
+-- -- end)
 
 minetest.register_on_punchnode(
 	function(pos, node, puncher, pointed_thing)
@@ -257,6 +257,16 @@ minetest.register_on_punchnode(
 minetest.register_entity("zombiestrd:zombie",{
 											-- common props
 initial_properties = {											
+		physical = true,
+		stepheight = 0.1,			
+		collide_with_objects = true,
+		collisionbox = {-0.25, -1, -0.25, 0.25, 0.75, 0.25},
+		visual = "mesh",
+		mesh = "zombie_normal.b3d",
+		textures = {"mobs_zombie.png","mobs_zombi2.png"},
+		visual_size = {x = 1, y = 1},
+		static_save = true,
+	},
 	physical = true,
 	stepheight = 0.1,			
 	collide_with_objects = true,
@@ -266,7 +276,6 @@ initial_properties = {
 	textures = {"mobs_zombie.png","mobs_zombi2.png"},
 	visual_size = {x = 1, y = 1},
 	static_save = true,
-	},
 	
 	on_step = mobkit.stepfunc,	-- required
 	on_activate = mobkit.actfunc,		-- required
@@ -300,7 +309,13 @@ initial_properties = {
 	
 	on_punch=function(self, puncher, time_from_last_punch, tool_caps, dir)
 		if mobkit.is_alive(self) then
-			
+			local luaent = puncher:get_luaentity()
+			if mobkit.is_alive(puncher) and not puncher:is_player() then
+				if math.random(1,3) == 1 then
+					mobkit.hurt(self,1)
+				end
+				mobkit.hq_hunt(self,15,puncher)
+			end
 			-- head seeking
 			if type(puncher)=='userdata' and puncher:is_player() then
 				local pp = puncher:get_pos()
@@ -398,3 +413,71 @@ minetest.register_on_chat_message(
 		end
 	end
 )	--]]
+
+--rare individuals
+
+mob_core.register_spawn({
+	name = "zombiestrd:zombie",
+	nodes = {"default:dirt_with_snow","default:dirt_with_grass","default:dirt_with_dry_grass", "ethereal:Grove_dirt", "ethereal:Prairie_dirt","default:dirt_with_coniferous_litter",},
+	min_light = 0,
+	max_light = 5,
+	min_height = -300,
+	max_height = 300,
+	group = 1,
+	optional = {reliability = 2}
+
+}, 3, 5)
+--hordes in certian biomes
+mob_core.register_spawn({
+	name = "zombiestrd:zombie",
+	nodes = {"group:crumbly"},
+	min_light = 0,
+	max_light = 5,
+	min_height = -300,
+	max_height = 300,
+	group = 10,
+	optional = {
+		biomes = {
+			"desert",
+			"grayness",
+			"mushroom",
+			"sandstone",
+			"fiery",
+			"tundra",
+			"plains",
+		},
+		reliability = 3,
+	}
+
+}, 2, 1)
+
+--hordes underground in dungeons
+mob_core.register_spawn({
+	name = "zombiestrd:zombie",
+	nodes = {"default:cobble","default:mossycobble"},
+	min_light = 0,
+	max_light = 5,
+	min_height = -32000,
+	max_height = -20,
+	group = 14,
+	optional = {
+
+		reliability = 7,
+	}
+
+}, 1, 1)
+--spawn everywhere underground, somewhat
+mob_core.register_spawn({
+	name = "zombiestrd:zombie",
+	nodes = {"group:stone"},
+	min_light = 0,
+	max_light = 5,
+	min_height = -32000,
+	max_height = -20,
+	group = 3,
+	optional = {
+
+		reliability = 2,
+	}
+
+}, 10, 5)
