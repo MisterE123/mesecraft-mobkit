@@ -142,7 +142,8 @@ mob_core.register_spawn({
 			"grassland",
 			"savanna",
 			"rainforest"
-		}
+		},
+		reliability = 2,
 	}
 }, 16, 6)
 

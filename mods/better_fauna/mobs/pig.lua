@@ -163,6 +163,7 @@ mob_core.register_spawn({
 		biomes = {
 			"grassland",
 			"deciduous_forest"
-		}
+		},
+		reliability = 1,
 	}
 }, 16, 1)

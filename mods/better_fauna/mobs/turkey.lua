@@ -130,7 +130,8 @@ mob_core.register_spawn({
 		biomes = {
 			"deciduous_forest",
 			"taiga"
-		}
+		},
+		reliability = 1,
 	}
 }, 16, 6)
 

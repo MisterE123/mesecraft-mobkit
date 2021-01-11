@@ -255,7 +255,10 @@ mob_core.register_spawn({
 	max_height = 31000,
 	min_rad = 24,
 	max_rad = 256,
-	group = 6
+	group = 6,
+	optional = {
+		reliability = 1,
+	}
 }, 2, 8)
 
 minetest.register_craftitem("better_fauna:mutton_raw", {
