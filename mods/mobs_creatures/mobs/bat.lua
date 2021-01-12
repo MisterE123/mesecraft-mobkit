@@ -147,7 +147,7 @@ minetest.register_entity("mobs_creatures:bat",{
                             -- > 1 - drowns
                             -- < 0 - MC like water trampolining
 	lung_capacity = 500, 		-- seconds
-    timeout = 120,			-- entities are removed after this many seconds inactive
+    timeout = 600,			-- entities are removed after this many seconds inactive
                             -- 0 is never
                             -- mobs having memory entries are not affected
 	ignore_liquidflag = false,			-- range is distance between attacker's collision box center
